@@ -40,7 +40,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executors;
 
 final class WorldBuilder {
 
@@ -50,12 +49,7 @@ final class WorldBuilder {
   private static Country universe;
 
   private WorldBuilder(final Context ctx) {
-    Executors.newCachedThreadPool().execute(new Runnable() {
-      @Override
-      public void run() {
-        loadAllData(ctx);
-      }
-    });
+    loadAllData(ctx);
   }
 
   /**
