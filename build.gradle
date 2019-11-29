@@ -1,5 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         google()
@@ -8,20 +7,104 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
-        
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+apply plugin: 'java'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+apply plugin: 'checkstyle'
 
 allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+
+// Create the pom configuration:
+def pomConfig = {
+    licenses {
+        license {
+            name 'MIT Licence'
+            url 'https://opensource.org/licenses/MIT'
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "blongho"
+            name "Bernard Che Longho"
+            email "blongho02@gmail.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/blongho/worldCountryData.git"
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'com.blongho.country_data'
+            artifactId 'worldCountryData'
+            version '1.4'
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'An Android library that contains ‘all’ the flags of the countries of the \
+  world. This can be used for android projects where the developer is interested in getting the \
+  flag of a particular country for any reason (e.g for nationality, language, etc)')
+                root.appendNode('name', 'worldCountryData')
+                root.appendNode('url', 'https://github.com/blongho/worldCountryData.git')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    // If you get an error because you do not have an environment variable with these names,
+    // replace user = "any string" and key="any key" 
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['MyPublication']
+    dryRun = false //[Default: false] Whether to run this as dry-run, without deploying
+    publish = true //[Default: false] Whether version should be auto published after an upload
+    override = false //[Default: false] Whether to override version artifacts already published
+    pkg {
+        repo = 'maven'
+        name = 'worldCountryData'
+        userOrg = user
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/blongho/worldCountryData.git'
+        labels = ['android', 'flags', 'country']
+        publicDownloadNumbers = true
+        githubRepo = 'https://github.com/blongho/worldCountryData.git'
+        githubReleaseNotesFile = 'README.md'
+        version {
+            name = '1.4-final'
+            desc = 'Stable bild with Country data, currency, population, capital etc...'
+            released  = new Date()
+            vcsTag = '1.4-beta02'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
 }
