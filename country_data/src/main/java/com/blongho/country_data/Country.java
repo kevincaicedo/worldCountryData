@@ -67,10 +67,11 @@ public class Country {
   private final String continent;
   private final String area;
   private final String population;
+  private String codePhone;
+
   @DrawableRes
   private int flagResource; // The image resource that represent the
   // country flag
-  private Currency currency;
 
   /**
    * @param id The numeric code of the country
@@ -81,12 +82,11 @@ public class Country {
    * @param continent The continent where the country is found
    * @param area The surface area of the country
    * @param population The population of the country
+   * @param codePhone
    * @param flagResource The country flag
-   * @param currency The currency of the country
    */
   Country(String id, String name, String alpha2, String alpha3, String capital,
-      String continent, String area, String population, @DrawableRes int flagResource,
-      Currency currency) {
+          String continent, String area, String population, String codePhone, @DrawableRes int flagResource) {
     this.id = id;
     this.name = name;
     this.alpha2 = alpha2;
@@ -95,8 +95,8 @@ public class Country {
     this.continent = continent;
     this.area = area;
     this.population = population;
+    this.codePhone = codePhone;
     this.flagResource = flagResource;
-    this.currency = currency;
   }
 
   /**
@@ -113,6 +113,20 @@ public class Country {
    */
   public final String getCapital() {
     return capital;
+  }
+
+  /**
+   * @return The code phone of the Country
+   */
+  public final String getCodePhone() {
+    return codePhone;
+  }
+
+  /**
+   * @return The code phone of the Country
+   */
+  public void setCodePhone(String codePhone) {
+    this.codePhone = codePhone;
   }
 
   /**
@@ -215,14 +229,6 @@ public class Country {
    *
    * @return The country currency
    */
-  public final Currency getCurrency() {
-    return currency;
-  }
-
-  /* package */
-  void setCurrency(final Currency currency) {
-    this.currency = currency;
-  }
 
   @Override
   public String toString() {
@@ -235,7 +241,6 @@ public class Country {
         ", continent='" + getContinent() + '\'' +
         ", area='" + getArea() + '\'' +
         ", population='" + getPopulation() + '\'' +
-        ", currency=" + currency +
         '}';
   }
 

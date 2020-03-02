@@ -34,7 +34,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.blongho.country_data.Country;
-import com.blongho.country_data.Currency;
 import com.blongho.country_data.World;
 import com.google.android.material.textfield.TextInputEditText;
 import java.text.NumberFormat;
@@ -48,6 +47,7 @@ public class CountryDataSample extends AppCompatActivity {
   private TextView alpha2; // the country iso alpha2
   private TextView alpha3; // the country iso alpha3
   private TextView code; // the country numeric code
+  private TextView codePhone; // the country numeric code
   private TextView currency; // the currency of the country
   private TextView capital, area, population, continent;
   private String entered; // the value entered by the user
@@ -80,6 +80,7 @@ public class CountryDataSample extends AppCompatActivity {
     alpha2 = (TextView) findViewById(R.id.alpha2);
     alpha3 = (TextView) findViewById(R.id.alpha3);
     code = (TextView) findViewById(R.id.numericCode);
+    codePhone = (TextView) findViewById(R.id.countryCodePhone);
     currency = (TextView) findViewById(R.id.currency);
     area = (TextView) findViewById(R.id.area);
     population = (TextView) findViewById(R.id.population);
@@ -118,16 +119,13 @@ public class CountryDataSample extends AppCompatActivity {
           alpha2.setText(country.getAlpha2());
           alpha3.setText(country.getAlpha3());
           code.setText(String.valueOf(country.getId()));
+          codePhone.setText(country.getCodePhone());
           area.setText(
               NumberFormat.getInstance(Locale.getDefault()).format(country.getArea()) + " sq. km");
           capital.setText(country.getCapital());
           population.setText(
               NumberFormat.getInstance(Locale.getDefault()).format(country.getPopulation()));
           continent.setText(country.getContinent().toUpperCase());
-          final Currency curr = country.getCurrency();
-          if (curr != null) {
-            currency.setText("Currency: " + curr.toString());
-          }
         }
       }
     });

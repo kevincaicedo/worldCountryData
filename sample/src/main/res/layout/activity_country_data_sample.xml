@@ -91,6 +91,16 @@
 
     <LinearLayout style="@style/layout_linear_horizontal">
       <TextView
+          style="@style/textViewStyle"
+          android:text="code country phone" />
+
+      <TextView
+          android:id="@+id/countryCodePhone"
+          style="@style/textViewStyle" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_linear_horizontal">
+      <TextView
         style="@style/textViewStyle"
         android:text="@string/alpha3" />
       <TextView

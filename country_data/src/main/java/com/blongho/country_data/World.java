@@ -147,11 +147,4 @@ public final class World {
    *
    * @return The currencies of the world {alpha2, currencyName, currencyCode, currencySymbol}
    */
-  public static List<Currency> getAllCurrencies() {
-    if (instance == null) {
-      throw new CountryDataException(
-          "You have to call World.init(getApplicationContext()) before this method.");
-    }
-    return WorldData.currencies();
-  }
 }

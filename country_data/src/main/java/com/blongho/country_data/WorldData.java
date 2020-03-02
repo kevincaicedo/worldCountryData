@@ -42,14 +42,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil;
+
 final class WorldData {
 
-  private static Map<String, Currency> currencyMap = new HashMap<>(); // {alpha2, Currency}
   private static WorldData instance;
+  private static PhoneNumberUtil phoneNumberUtil;
   private static Map<Country, Integer> countryFlagMap = new HashMap<>();
   private static Country universe;
 
   private WorldData(final Context ctx) {
+    if (phoneNumberUtil == null){
+      phoneNumberUtil = PhoneNumberUtil.createInstance(ctx);
+    }
+
     loadAllData(ctx);
   }
 
@@ -63,6 +69,10 @@ final class WorldData {
    */
 
   static WorldData getInstance(Context ctx) {
+    if (phoneNumberUtil == null){
+      phoneNumberUtil = PhoneNumberUtil.createInstance(ctx);
+    }
+
     if (instance != null) {
       return instance;
     }
@@ -72,11 +82,6 @@ final class WorldData {
       }
     }
     return instance;
-  }
-
-  /* package */
-  static List<Currency> currencies() {
-    return new ArrayList<>(currencyMap.values());
   }
 
   /* package */
@@ -126,8 +131,6 @@ final class WorldData {
     int countryFlag;
     Country[] countries = getCountries(context);
 
-    getCurrencies(context);
-
     for (final Country country : countries) {
       // do was not allowed as a drawable so was renamed to dominican
       if (country.getAlpha2().equalsIgnoreCase("do")) {
@@ -138,8 +141,10 @@ final class WorldData {
         countryFlag = context.getResources()
             .getIdentifier(resource, null, context.getPackageName());
       }
+
+      final int code = phoneNumberUtil.getCountryCodeForRegion(country.getAlpha2());
+      country.setCodePhone(String.valueOf(code));
       country.setFlagResource(countryFlag);
-      country.setCurrency(currencyMap.get(country.getAlpha2().toLowerCase()));
       countryFlagMap.put(country, countryFlag);
       if (country.getAlpha2().equalsIgnoreCase("xx")) {
         universe = country;
@@ -147,6 +152,13 @@ final class WorldData {
     }
   }
 
+  private PhoneNumberUtil getPhoneNumberUtil(Context ctx){
+    if (phoneNumberUtil == null){
+      phoneNumberUtil = PhoneNumberUtil.createInstance(ctx);
+    }
+
+    return phoneNumberUtil;
+  }
   /**
    * Read all countries from file
    */
@@ -157,17 +169,5 @@ final class WorldData {
     return gson.fromJson(values, Country[].class);
   }
 
-  /**
-   * Load the currencies from com_blongho_country_data_currencies.json
-   */
-  private void getCurrencies(Context context) {
-    final String currencyArray = AssetsReader.readFromAssets(context,
-        R.raw.com_blongho_country_data_currencies);
-    Gson gson = new Gson();
-    final Currency[] currencies = gson.fromJson(currencyArray, Currency[].class);
-    for (final Currency currency : currencies) {
-      currencyMap.put(currency.getCountry().toLowerCase(), currency);
-    }
-  }
 }
 
