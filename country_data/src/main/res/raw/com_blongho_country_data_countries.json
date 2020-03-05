@@ -70,16 +70,6 @@
     "population": "2,968,000"
   },
   {
-    "alpha2": "AN",
-    "alpha3": "ANT",
-    "area": "960.0",
-    "capital": "Willemstad",
-    "continent": "NA",
-    "id": "530",
-    "name": "Netherlands Antilles",
-    "population": "300,000"
-  },
-  {
     "alpha2": "AO",
     "alpha3": "AGO",
     "area": "1,246,700.0",
@@ -88,16 +78,6 @@
     "id": "024",
     "name": "Angola",
     "population": "13,068,161"
-  },
-  {
-    "alpha2": "AQ",
-    "alpha3": "ATA",
-    "area": "14,000,000.0",
-    "capital": null,
-    "continent": "AN",
-    "id": "010",
-    "name": "Antarctica",
-    "population": "0"
   },
   {
     "alpha2": "AR",
@@ -340,16 +320,6 @@
     "population": "699,847"
   },
   {
-    "alpha2": "BV",
-    "alpha3": "BVT",
-    "area": "49.0",
-    "capital": null,
-    "continent": "AN",
-    "id": "074",
-    "name": "Bouvet Island",
-    "population": "0"
-  },
-  {
     "alpha2": "BW",
     "alpha3": "BWA",
     "area": "600,370.0",
@@ -508,16 +478,6 @@
     "id": "188",
     "name": "Costa Rica",
     "population": "4,516,220"
-  },
-  {
-    "alpha2": "CS",
-    "alpha3": "SCG",
-    "area": "102,350.0",
-    "capital": "Belgrade",
-    "continent": "EU",
-    "id": "891",
-    "name": "Serbia and Montenegro",
-    "population": "10,829,175"
   },
   {
     "alpha2": "CU",
@@ -910,16 +870,6 @@
     "population": "11,000,000"
   },
   {
-    "alpha2": "GS",
-    "alpha3": "SGS",
-    "area": "3,903.0",
-    "capital": "Grytviken",
-    "continent": "AN",
-    "id": "239",
-    "name": "South Georgia and South Sandwich Islands",
-    "population": "30"
-  },
-  {
     "alpha2": "GT",
     "alpha3": "GTM",
     "area": "108,890.0",
@@ -968,16 +918,6 @@
     "id": "344",
     "name": "Hong Kong",
     "population": "6,898,686"
-  },
-  {
-    "alpha2": "HM",
-    "alpha3": "HMD",
-    "area": "412.0",
-    "capital": null,
-    "continent": "AN",
-    "id": "334",
-    "name": "Heard Island and McDonald Islands",
-    "population": "0"
   },
   {
     "alpha2": "HN",
@@ -1820,16 +1760,6 @@
     "population": "7,012"
   },
   {
-    "alpha2": "PN",
-    "alpha3": "PCN",
-    "area": "47.0",
-    "capital": "Adamstown",
-    "continent": "OC",
-    "id": "612",
-    "name": "Pitcairn Islands",
-    "population": "46"
-  },
-  {
     "alpha2": "PR",
     "alpha3": "PRI",
     "area": "9,104.0",
@@ -2170,16 +2100,6 @@
     "population": "10,543,464"
   },
   {
-    "alpha2": "TF",
-    "alpha3": "ATF",
-    "area": "7,829.0",
-    "capital": "Port-aux-Francais",
-    "continent": "AN",
-    "id": "260",
-    "name": "French Southern Territories",
-    "population": "140"
-  },
-  {
     "alpha2": "TG",
     "alpha3": "TGO",
     "area": "56,785.0",
@@ -2328,16 +2248,6 @@
     "id": "800",
     "name": "Uganda",
     "population": "33,398,682"
-  },
-  {
-    "alpha2": "UM",
-    "alpha3": "UMI",
-    "area": "0.0",
-    "capital": null,
-    "continent": "OC",
-    "id": "581",
-    "name": "U.S. Minor Outlying Islands",
-    "population": "0"
   },
   {
     "alpha2": "US",
@@ -2518,15 +2428,5 @@
     "id": "716",
     "name": "Zimbabwe",
     "population": "13,061,000"
-  },
-  {
-    "alpha2": "xx",
-    "alpha3": "xxx",
-    "area": "1000,000,000.0",
-    "capital": "Sky",
-    "continent": "UNX",
-    "id": "0000",
-    "name": "World",
-    "population": "1111,1111,111"
   }
 ]

@@ -114,7 +114,7 @@ public class CountryDataSample extends AppCompatActivity {
         // final Currency currency = country.getCurrency();
 
         // See what a country object is
-        if (country.getFlagResource() != World.getWorldFlag()) {
+        if (country != null && country.getFlagResource() != World.getWorldFlag()) {
           countryName.setText(country.getName());
           alpha2.setText(country.getAlpha2());
           alpha3.setText(country.getAlpha3());

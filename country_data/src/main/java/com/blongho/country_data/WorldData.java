@@ -49,7 +49,6 @@ final class WorldData {
   private static WorldData instance;
   private static PhoneNumberUtil phoneNumberUtil;
   private static Map<Country, Integer> countryFlagMap = new HashMap<>();
-  private static Country universe;
 
   private WorldData(final Context ctx) {
     if (phoneNumberUtil == null){
@@ -119,7 +118,7 @@ final class WorldData {
         return country;
       }
     }
-    return universe;
+    return null;
   }
 
   /**
@@ -146,9 +145,6 @@ final class WorldData {
       country.setCodePhone(String.valueOf(code));
       country.setFlagResource(countryFlag);
       countryFlagMap.put(country, countryFlag);
-      if (country.getAlpha2().equalsIgnoreCase("xx")) {
-        universe = country;
-      }
     }
   }
 
